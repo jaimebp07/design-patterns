@@ -10,9 +10,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class FileAdapter {
 
-    private InputFile inputFle;
+    private InputFile inputFile;
 
     public List<Person> readFile(InputStream inputStream){
-        return this.inputFle.readFile(inputStream);
+        return this.inputFile.readFile(inputStream);
     }
 }

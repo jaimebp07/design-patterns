@@ -11,7 +11,7 @@ import org.apache.poi.ss.usermodel.Row;
 
 import com.example.adapter.model.Person;
 
-public class EcxelFileAdapter implements InputFile {
+public class ExcelFileAdapter implements InputFile {
 
     @Override
     public List<Person> readFile(InputStream inputStream) {
