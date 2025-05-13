@@ -6,11 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
-import com.example.adapter.adapter.CsvFileAdapter;
-import com.example.adapter.adapter.ExcelFileAdapter;
-import com.example.adapter.adapter.FileAdapter;
 import com.example.adapter.adapter.InputFile;
 import com.example.adapter.model.Person;
 
@@ -23,20 +24,21 @@ public class AdapterApplication {
                     "resources" + File.separator +
                     "files" + File.separator;
 	public static void main(String[] args) throws FileNotFoundException {
-		//SpringApplication.run(AdapterApplication.class, args);
-		// Read Excel
-        /*InputFile excelFileAdapter = new ExcelFileAdapter();
-        FileAdapter fileAdapter = new FileAdapter(excelFileAdapter);
-        System.out.println(path);
-        InputStream inputStream = new FileInputStream(path + "persons.xlsx");
-        */
-        InputFile csvFileAdapter = new CsvFileAdapter();
-        FileAdapter fileAdapter = new FileAdapter(csvFileAdapter);
-        InputStream inputStream = new FileInputStream(path + "persons.csv");
-        
+		SpringApplication.run(AdapterApplication.class, args);
 
-		List<Person> personList = fileAdapter.readFile(inputStream);
-        System.out.println(personList);
 	}
+
+    @Bean
+	//CommandLineRunner run(@Qualifier("csv") InputFile inputFile) {
+    CommandLineRunner run(@Qualifier("excel") InputFile inputFile) {
+		return args -> {
+			//InputStream inputStream = new FileInputStream(path + "persons.csv");
+			InputStream inputStream = new FileInputStream(path + "persons.xlsx");
+			List<Person> personList = inputFile.readFile(inputStream);
+			System.out.println(personList);
+		};
+	}
+
+    
 
 }

@@ -5,11 +5,14 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.example.adapter.model.Person;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
+@Component("csv")
 public class CsvFileAdapter implements InputFile {
 
     @Override

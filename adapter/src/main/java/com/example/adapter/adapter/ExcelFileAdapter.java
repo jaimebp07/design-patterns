@@ -7,10 +7,12 @@ import java.util.List;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.stereotype.Component;
 import org.apache.poi.ss.usermodel.Row;
 
 import com.example.adapter.model.Person;
 
+@Component("excel")
 public class ExcelFileAdapter implements InputFile {
 
     @Override
