@@ -20,11 +20,16 @@ public class FileReaderService {
     }
 
     public List<Person> read(String filename) {
-        try (InputStream inputStream = new FileInputStream(filename)) {
+        try (InputStream inputStream = getFileInputStream(filename)) {
             return inputFile.readFile(inputStream);
         } catch (IOException e) {
             throw new RuntimeException("Failed to read file: " + filename, e);
         }
     }
+
+    protected InputStream getFileInputStream(String filename) throws IOException {
+        return new FileInputStream(filename);
+    }
+
 }
 
